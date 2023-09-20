@@ -1,5 +1,6 @@
 import json
 import requests
+from datetime import datetime
 
 
 class NotionClient:
@@ -14,8 +15,10 @@ class NotionClient:
         }
 
     # read, update
-    def create_page(self, description, date, status):
-        create_url = 'https://api.notion.com/v1/pages'
+    def create_page(self, description ):
+        status="Active"
+        date = datetime.now().astimezone().isoformat()
+        create_url = f'https://api.notion.com/v1/databases/{self.database_id}/pages'
 
         data = {
         "parent": { "database_id": self.database_id },
@@ -50,3 +53,5 @@ class NotionClient:
         res = requests.post(create_url, headers=self.headers, data=data)
         print(res.status_code)
         return res
+    
+
