@@ -38,7 +38,7 @@ class SpotifyControl:
 
     def run_terminal_command(self):
         try:
-            subprocess.Popen(['open', '-a', 'Terminal', 'run_command.sh'])
+            subprocess.Popen(['open', '-a', 'Terminal', 'utils/run_command.sh'])
         except Exception as e:
             print(f"An error occurred: {e}")
 

@@ -1,7 +1,7 @@
 import requests
 import webbrowser
 import subprocess
-from constants import  Constants
+from utils.constants import  Constants
 
 def open_app(search_term):
     keys = Constants.App_name.keys()

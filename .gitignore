@@ -1,1 +1,5 @@
 /venv
+.cache
+.credentials.json
+.token.json
+token.pickle

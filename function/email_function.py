@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from constants import Constants
+from utils.constants import Constants
 import base64
 import smtplib
 import ssl
@@ -33,20 +33,33 @@ class GoogleEmail:
         self.pswd = Constants.google_email_pwd
         self.simple_email_context = ssl._create_unverified_context()
 
-        if os.path.exists('token.pickle'):
-            with open('token.pickle', 'rb') as token:
-                self.creds = pickle.load(token)
+        # if os.path.exists('token.pickle'):
+        #     with open('token.pickle', 'rb') as token:
+        #         self.creds = pickle.load(token)
 
+        # if not self.creds or not self.creds.valid:
+        #     if self.creds and self.creds.expired and self.creds.refresh_token:
+        #         self.creds.refresh(Request())
+        #     else:
+        #         flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+        #         self.creds = flow.run_local_server(port=0)
+
+        #     with open('token.pickle', 'wb') as token:
+        #         pickle.dump(self.creds, token)
+
+        if os.path.exists('token.json'):
+            self.creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+            # If there are no (valid) credentials available, let the user log in.
         if not self.creds or not self.creds.valid:
             if self.creds and self.creds.expired and self.creds.refresh_token:
                 self.creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    'credentials.json', SCOPES)
                 self.creds = flow.run_local_server(port=0)
-
-            with open('token.pickle', 'wb') as token:
-                pickle.dump(self.creds, token)
-
+            # Save the credentials for the next run
+            with open('token.json', 'w') as token:
+                token.write(self.creds.to_json())
 
     def _get_service(self):
         return build('gmail', 'v1', credentials=self.creds)

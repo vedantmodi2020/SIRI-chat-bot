@@ -1,16 +1,16 @@
 from langchain.agents import Tool, load_tools, initialize_agent, AgentType
 from langchain.tools import BaseTool, GoogleSearchResults, wikipedia, StructuredTool
 from langchain.chat_models import ChatOpenAI
-from spotify import SpotifyControl
-from constants import Constants
-from notion import NotionClient
+from function.spotify import SpotifyControl
+from utils.constants import Constants
+from function.notion import NotionClient
 from langchain import LLMChain,PromptTemplate
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
-from open import open_app
+from function.open import open_app
 from langchain.output_parsers import OutputFixingParser
-from terminal import run_command
-from email_function import GoogleEmail
-from args_shcema_collections import SearchByDateInput,EmailSend,EmailSendAttachments
+from function.terminal import run_command
+from function.email_function import GoogleEmail
+from utils.args_shcema_collections import SearchByDateInput,EmailSend,EmailSendAttachments
 import os
 
 
