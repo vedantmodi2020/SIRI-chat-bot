@@ -1,5 +1,5 @@
 import requests
-from utils.constants import Constants
+from constants import Constants
 
 def send_whatsapp_message(data:list):
     try:

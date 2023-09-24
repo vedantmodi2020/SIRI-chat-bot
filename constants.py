@@ -84,7 +84,7 @@ class Constants:
         "zoom": "zoom.us",
     }
 
-    ApiKey = "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"
+    ApiKey = "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"
     Serapi_key = "04b8ed8f39bfaa4c8875e64db0a941c31efff1e08ba3fd7d71737074a68e5eac"
 
     token = "secret_l3GhXOvblm68kBJi5p9K6w3VxbJz81Nsgq1qUJHB1z5"

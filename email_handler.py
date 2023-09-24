@@ -1,16 +1,15 @@
 from langchain.agents import Tool, load_tools, initialize_agent, AgentType
 from langchain.tools import BaseTool, GoogleSearchResults, wikipedia, StructuredTool
 from langchain.chat_models import ChatOpenAI
-from function.spotify import SpotifyControl
-from utils.constants import Constants
-from function.notion import NotionClient
+from constants import Constants
+from notion import NotionClient
 from langchain import LLMChain,PromptTemplate
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
-from function.open import open_app
+from open import open_app
 from langchain.output_parsers import OutputFixingParser
-from function.terminal import run_command
-from function.email_function import GoogleEmail
-from utils.args_shcema_collections import SearchByDateInput,EmailSend,EmailSendAttachments
+from terminal import run_command
+from email_function import GoogleEmail
+from args_shcema_collections import SearchByDateInput,EmailSend,EmailSendAttachments
 import os
 
 
@@ -78,6 +77,6 @@ conversational_agents_email = initialize_agent(
 #         input_user = input("Is there anything you want to ask or would you like me perform any task : ")
 #         if input_user.lower() == "exit":
 #             exit()
-#         print(conversational_agents.run(input_user))
+#         print(conversational_agents_email.run(input_user))
 #     except Exception as e:
 #         print(f"\nSorry Exception Occurred please try again : {str(e)}")

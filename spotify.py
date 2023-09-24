@@ -31,6 +31,7 @@ class SpotifyControl:
             if self.tries > 0:
                 print("Start activating the player device")
                 self.run_terminal_command()
+                self.play_song(song_name=song_name)
                 print(f"An  error occurred , {str(e)}")
             
 

@@ -11,8 +11,8 @@ from langchain.agents import initialize_agent,AgentType
 from bs4 import BeautifulSoup
 import requests
 from langchain.prompts.chat import SystemMessagePromptTemplate
-from utils.constants import Constants
-from tool.tools import all_tools
+from constants import Constants
+from main_handler import all_tools
 
 
 os.environ["OPENAI_API_KEY"] = Constants.ApiKey

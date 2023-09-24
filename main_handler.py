@@ -1,18 +1,19 @@
 from langchain.agents import Tool, load_tools, initialize_agent, AgentType
-from langchain.tools import BaseTool, GoogleSearchResults, wikipedia
+from langchain.tools import BaseTool, GoogleSearchResults, wikipedia,  StructuredTool
 from langchain.chat_models import ChatOpenAI
-from function.spotify import SpotifyControl
-from utils.constants import Constants
-from function.notion import NotionClient
+from spotify import SpotifyControl
+from constants import Constants
+from notion import NotionClient
 from langchain import LLMChain,PromptTemplate
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
-from function.open import open_app
+from open import open_app
 from langchain.output_parsers import OutputFixingParser
-from function.terminal import run_command
+from terminal import run_command
 import os
-from handler.email_handler import conversational_agents_email
-from function.whatsapp_function import send_whatsapp_message
-from utils.args_shcema_collections import WhatsappSend
+from email_handler import conversational_agents_email
+from whatsapp_function import send_whatsapp_message
+from args_shcema_collections import WhatsappSend
+from calender_handler import conversational_agents_calender
 
 
 os.environ["OPENAI_API_KEY"] = Constants.ApiKey
@@ -57,7 +58,11 @@ tools = [ Tool.from_function(
         name = "Whatsapp messenger",
         func=send_whatsapp_message,
         description="This tool will be used to send the whatsapp message only to anyone, input will be to, message",
-    )
+    ), Tool.from_function(
+        name = "calender handler",
+        func=conversational_agents_calender.run,
+        description="This function will be useful when user wants to perform anything related to their calender or creating some events in their calender,user input (directly no change in the input given by the user), "
+    ),
 ]
 
 in_built_tools = load_tools(["serpapi", "llm-math","wikipedia","terminal"], llm=llm)

@@ -11,3 +11,9 @@ class EmailSendAttachments(BaseModel):
 
 class WhatsappSend(BaseModel):
     data: list
+
+class CalenderSend(BaseModel):
+    event_name: str
+    startTime: str
+    endTime: str
+    emails: list
