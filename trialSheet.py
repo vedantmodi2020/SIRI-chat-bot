@@ -29,7 +29,7 @@ class GoogleSheetsAPI:
 
     def modify(self, SHEET_NAME):
         try:
-           
+        
             sheets = self.service.spreadsheets()
 
             result = sheets.values().get(spreadsheetId=self.SPREAD_ID, range=f"{SHEET_NAME}!A1:C6").execute()
